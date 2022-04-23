@@ -1,16 +1,12 @@
 package com.example.postviewer.commentview
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.postviewer.databinding.CommentItemBinding
-import com.example.postviewer.databinding.PostItemBinding
-import com.example.postviewer.databinding.PostListFragmentBinding
 import com.example.postviewer.network.Comment
-import com.example.postviewer.network.Post
 
 class CommentListAdapter :
     ListAdapter<Comment,CommentListAdapter.PostViewHolder>(DiffCallback){

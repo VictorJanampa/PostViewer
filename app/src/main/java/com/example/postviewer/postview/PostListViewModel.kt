@@ -1,16 +1,13 @@
 package com.example.postviewer.postview
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.postviewer.database.PostDatabase
-import com.example.postviewer.database.PostDatabaseDao
 import com.example.postviewer.network.Post
 import com.example.postviewer.network.PostApi
-import kotlinx.coroutines.NonDisposableHandle.parent
 import kotlinx.coroutines.launch
 
 class PostListViewModel(application: Application) : ViewModel(){

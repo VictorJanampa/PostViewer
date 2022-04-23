@@ -6,10 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
-import com.example.postviewer.commentview.CommentListViewModel
-import com.example.postviewer.database.PostDatabase
 import com.example.postviewer.databinding.PostListFragmentBinding
 
 class PostListFragment : Fragment() {

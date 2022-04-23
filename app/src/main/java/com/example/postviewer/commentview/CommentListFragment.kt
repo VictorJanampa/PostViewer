@@ -6,10 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.postviewer.R
 import com.example.postviewer.databinding.CommentListFragmentBinding
-import com.example.postviewer.databinding.PostListFragmentBinding
-import com.example.postviewer.postview.PostListAdapter
+
 
 class CommentListFragment : Fragment() {
 
