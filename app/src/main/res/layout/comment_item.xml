@@ -7,7 +7,7 @@
     <data>
         <variable
             name="post"
-            type="com.example.postviewer.network.Post" />
+            type="com.example.postviewer.network.Comment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,7 +26,7 @@
             android:paddingEnd="@dimen/normal_padding"
             app:layout_constraintStart_toEndOf="@+id/id"
             app:layout_constraintTop_toTopOf="parent"
-            app:text="@{post.title}"
+            app:text="@{post.name}"
             tools:text="Post Title" />
 
         <TextView

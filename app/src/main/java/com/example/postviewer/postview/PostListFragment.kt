@@ -34,7 +34,7 @@ class PostListFragment : Fragment() {
         viewModel.navigateToSelectedProperty.observe(viewLifecycleOwner) {
             if (null != it) {
                 this.findNavController()
-                    .navigate(PostListFragmentDirections.actionPostListFragmentToCommentListFragment())
+                    .navigate(PostListFragmentDirections.actionPostListFragmentToCommentListFragment(it))
                 viewModel.displayCommentsComplete()
             }
         }

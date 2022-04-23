@@ -7,20 +7,29 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.postviewer.R
+import com.example.postviewer.databinding.CommentListFragmentBinding
+import com.example.postviewer.databinding.PostListFragmentBinding
+import com.example.postviewer.postview.PostListAdapter
 
 class CommentListFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = CommentListFragment()
-    }
-
-    private lateinit var viewModel: CommentListViewModel
-
+    private lateinit var binding: CommentListFragmentBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.comment_list_fragment, container, false)
+    ): View {
+        binding = CommentListFragmentBinding.inflate(inflater)
+        binding.lifecycleOwner = this
+        val application = requireNotNull(activity).application
+
+        val post = CommentListFragmentArgs.fromBundle(requireArguments()).post
+        val viewModelFactory = CommentListViewModelFactory(post, application)
+        binding.viewModel = ViewModelProvider(
+            this, viewModelFactory)[CommentListViewModel::class.java]
+
+        binding.postList.adapter = CommentListAdapter()
+
+        return binding.root
     }
 
 }

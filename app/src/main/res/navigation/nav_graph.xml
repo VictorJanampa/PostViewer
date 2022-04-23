@@ -18,5 +18,10 @@
         android:id="@+id/commentListFragment"
         android:name="com.example.postviewer.commentview.CommentListFragment"
         android:label="comment_list_fragment"
-        tools:layout="@layout/comment_list_fragment" />
+        tools:layout="@layout/comment_list_fragment">
+        <argument
+            android:name="post"
+            app:argType="com.example.postviewer.network.Post"
+            />
+    </fragment>
 </navigation>

@@ -24,8 +24,8 @@ interface PostApiService {
     @GET("posts")
     suspend fun getPosts(): List<Post>
 
-    @GET("comments?postId={postId}")
-    suspend fun getPostComments(@Query("postId") PostId: Int): List<Post>
+    @GET("comments")
+    suspend fun getPostComments(@Query("postId") PostId: Int): List<Comment>
 }
 
 object PostApi {

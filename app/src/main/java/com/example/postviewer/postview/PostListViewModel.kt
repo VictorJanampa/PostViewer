@@ -12,10 +12,6 @@ enum class ApiStatus { LOADING, ERROR, DONE }
 
 class PostListViewModel : ViewModel(){
 
-    private val _response = MutableLiveData<String>()
-    val response: LiveData<String>
-        get() = _response
-
     private val _status = MutableLiveData<ApiStatus>()
     val status: LiveData<ApiStatus>
         get() = _status
