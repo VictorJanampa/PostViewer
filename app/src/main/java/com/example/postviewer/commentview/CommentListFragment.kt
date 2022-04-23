@@ -24,9 +24,13 @@ class CommentListFragment : Fragment() {
 
         val post = CommentListFragmentArgs.fromBundle(requireArguments()).post
         val viewModelFactory = CommentListViewModelFactory(post, application)
-        binding.viewModel = ViewModelProvider(
+        val viewModel = ViewModelProvider(
             this, viewModelFactory)[CommentListViewModel::class.java]
-
+        binding.viewModel = viewModel
+        binding.refreshLayout.setOnRefreshListener {
+            binding.refreshLayout.isRefreshing=false
+            viewModel.getComments()
+        }
         binding.postList.adapter = CommentListAdapter()
 
         return binding.root

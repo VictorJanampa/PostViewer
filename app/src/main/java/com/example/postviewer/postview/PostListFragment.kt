@@ -5,17 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
+import com.example.postviewer.commentview.CommentListViewModel
+import com.example.postviewer.database.PostDatabase
 import com.example.postviewer.databinding.PostListFragmentBinding
 
 class PostListFragment : Fragment() {
 
     private lateinit var binding: PostListFragmentBinding
-    private val viewModel: PostListViewModel by lazy {
-        ViewModelProvider(this)[PostListViewModel::class.java]
-    }
+    private lateinit var viewModel: PostListViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,11 +25,23 @@ class PostListFragment : Fragment() {
 
         binding.lifecycleOwner = this
 
+        val application = requireNotNull(this.activity).application
+
+        val viewModelFactory = PostListViewModelFactory(application)
+
+        viewModel = ViewModelProvider(
+            this, viewModelFactory)[PostListViewModel::class.java]
+
         binding.viewModel = viewModel
 
         binding.postList.adapter = PostListAdapter(PostListAdapter.OnClickListener{
             viewModel.displayComments(it)
         })
+
+        binding.refreshLayout.setOnRefreshListener {
+            binding.refreshLayout.isRefreshing=false
+            viewModel.fetchPosts()
+        }
 
         viewModel.navigateToSelectedProperty.observe(viewLifecycleOwner) {
             if (null != it) {

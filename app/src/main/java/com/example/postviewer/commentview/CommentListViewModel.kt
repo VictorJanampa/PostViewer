@@ -1,7 +1,6 @@
 package com.example.postviewer.commentview
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.*
 import com.example.postviewer.network.Comment
 
@@ -13,9 +12,7 @@ enum class ApiStatus { LOADING, ERROR, DONE }
 
 class CommentListViewModel (post: Post, app: Application) : AndroidViewModel(app){
 
-  private val _selectedPost = MutableLiveData<Post>()
-  val selectedPost: LiveData<Post>
-        get() = _selectedPost
+    private val _selectedPost = MutableLiveData<Post>()
 
     init {
         _selectedPost.value = post
@@ -31,11 +28,11 @@ class CommentListViewModel (post: Post, app: Application) : AndroidViewModel(app
     init {
         getComments()
     }
-    private fun getComments() {
+    fun getComments() {
         viewModelScope.launch {
             _status.value = ApiStatus.LOADING
             try {
-                _posts.value = selectedPost.value?.let { PostApi.retrofitService.getPostComments(it.id) }
+                _posts.value = _selectedPost.value?.let { PostApi.retrofitService.getPostComments(it.id) }
                 _status.value = ApiStatus.DONE
             } catch (e: Exception) {
                 _status.value = ApiStatus.ERROR
